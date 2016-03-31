@@ -4,21 +4,23 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server",
-    "production": "webpack -p"
+    "dev": "webpack-dev-server",
+    "postinstall": "webpack --config ./webpack.config.js --progress --colors",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.13.4",
     "react": "^0.14.8",
-    "react-dom": "^0.14.8"
-  },
-  "devDependencies": {
+    "react-dom": "^0.14.8",
+    "webpack": "^1.12.14",
     "babel-core": "^6.7.4",
     "babel-loader": "^6.2.4",
     "babel-preset-react": "^6.5.0",
-    "html-webpack-plugin": "^2.15.0",
-    "webpack": "^1.12.14",
+    "html-webpack-plugin": "^2.15.0"
+  },
+  "devDependencies": {
     "webpack-dev-server": "^1.14.1"
   }
 }
