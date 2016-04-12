@@ -1,9 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-Ably.Realtime.Defaults.ENVIRONMENT = 'sandbox';
-var realtime = new Ably.Realtime(AblyApiKey);
-
-var channel = realtime.channels.get('ably-test');
+var channel;
 
 var Hello = React.createClass({
   getInitialState: function () {
@@ -22,6 +19,13 @@ var Hello = React.createClass({
   }
 });
 
-ReactDOM.render(<Hello />, document.getElementById('ably-status'));
+$.get('/api_key', function(data) {
+  Ably.Realtime.Defaults.ENVIRONMENT = 'sandbox';
+  var realtime = new Ably.Realtime(data);
+  channel = realtime.channels.get('ably-test');
 
-channel.publish('example', 'Ably is working!');
+  ReactDOM.render(<Hello />, document.getElementById('ably-status'));
+  channel.publish('example', 'Ably is working!');
+}).fail(function (jqXHR) {
+  console.log('Error fetching API Key: ' + jqXHR.responseText);
+});

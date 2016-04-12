@@ -6,10 +6,6 @@ var HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
   inject: 'body'
 });
 
-var definePlugin = new webpack.DefinePlugin({
-  AblyApiKey: JSON.stringify(process.env.ABLY_API_KEY)
-});
-
 module.exports = {
   entry: [
     './app/index.js'
@@ -20,8 +16,8 @@ module.exports = {
   },
   module: {
     loaders: [
-      {test: /\.js$/, exclude: /node_modules/, loader: "babel-loader"}
+      { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" }
     ]
   },
-  plugins: [HTMLWebpackPluginConfig, definePlugin]
+  plugins: [HTMLWebpackPluginConfig]
 };
